@@ -29,12 +29,14 @@ for i in range(1,14,1):
 print(tabla)
 
 print("1-Agendar, 2-Reagendar, 3-Mostar tabla, 4-Estadicticas Hora, 5-Estadicticas Especialista")
+print("6-Nombres, 7-CitaslibresE, 8-citaslibresE, 9-estadisticasespeciamayo")
 nombres=[]
 nombres.append("Nombres")
 años=[]
 años.append("Años")
 nidentidad=[]
 nidentidad.append("Identidad")
+
 def agendar():
     nombre = input("Nombre Completo: ")
     nombres.append(nombre)
@@ -45,10 +47,10 @@ def agendar():
     especi = input("¿Con que especialista desea agendar su cita?: ")
     hora = input("Ingrese el que fecha desea agendar su cita: ")
     for e in range(0,6):
-      if especi == especialidades[e]:
+      if especi.lower() == especialidades[e]:
         c=e
     for a in range(0,14):
-      if hora == horario[a]:
+      if hora.lower() == horario[a]:
         f=a
     if tabla[f][c] == 0:
       tabla[f][c] = 1
@@ -61,23 +63,23 @@ def reagendar():
     especi = input("\n¿Con que especialista agendo su cita?: ")
     hora = input("Ingrese en que hora agendo su cita: ")
     for e in range(0,6):
-      if especi == especialidades[e]:
+      if especi.lower() == especialidades[e]:
         c=e
     for a in range(0,14):
-      if hora == horario[a]:
+      if hora.lower() == horario[a]:
         f=a
     if tabla[f][c] == 1:
       tabla[f][c] = 0
     else:
       print("El horario selecccionado no se encuentra niguna cita asignada\n")
     print(tabla)
-    nuevoespeci = input("\n¿Con que especialista agendo su cita?: ")
+    nuevoespeci = input("\n¿Con que especialista desea agendar su nueva cita?: ")
     nuevohora = input("Ingrese a que hora desea agendar su nueva cita: ")
     for e in range(0,6):
-      if nuevoespeci == especialidades[e]:
+      if nuevoespeci.lower() == especialidades[e]:
         c=e
     for a in range(0,14):
-      if hora == horario[a]:
+      if nuevohora.lower() == horario[a]:
         f=a
     if tabla[f][c] == 0:
       tabla[f][c] = 1
@@ -85,7 +87,23 @@ def reagendar():
     else:
       print("El horario selecccionado ya se encuentra ocupado\n")
     print(tabla)
+    
 def estadisticashora():
+    es = input("De cual es especilistas desea ver las estadisticas: ")
+    for e in range(0,6):
+      if es.lower() == especialidades[e]:
+        c=e
+    print(c)
+    suma=0
+    for j in range(1,6,1):
+      for i in range(1,14,1):
+        if j == c:
+          suma+=tabla[i][j]
+          porcen=(suma/13)*100
+          redondea=round(porcen,2)
+    print(redondea)
+  
+def estadisticashoramayor():
   suma1=0
   suma2=0
   suma3=0
@@ -99,7 +117,7 @@ def estadisticashora():
   suma11=0
   suma12=0
   suma13=0
-  porcentajesE=[0]*15
+  porcentajesH=[0]*14
   for i in range(1,14,1):
     for j in range(1,6,1):
       if i == 1:
@@ -143,54 +161,85 @@ def estadisticashora():
         porcentaje=(suma13/5)*100
     redondeado = round(porcentaje,2)
     print("A las",tabla[i][0],"se registra un",redondeado,"% de citas agendadas")
-
+    porcentajesH[i]=redondeado
+  print(porcentajesH)
+  mayor=max(porcentajesH)
+  pos=porcentajesH.index(mayor)
+  ho=horario[pos]
+  print(mayor)
+  print(pos)
+  print(ho)
+  
 def estadisticasespecia():
-    suma1=0
-    suma2=0
-    suma3=0
-    suma4=0
-    suma5=0
-    porcentajesE=[0]*6
+    es = input("De cual es especilistas desea ver las estadisticas: ")
+    for e in range(0,6):
+      especialis=especialidades[e]
+      if es.lower() == especialis.lower():
+        c=e
+    suma=0
     for j in range(1,6,1):
       for i in range(1,14,1):
-        if j == 1:
-          suma1+=tabla[i][j]
-          porcentaje=(suma1/13)*100
-        if j == 2:
-          suma2+=tabla[i][j]
-          porcentaje=(suma2/13)*100
-        if j == 3:
-          suma3+=tabla[i][j]
-          porcentaje=(suma3/13)*100
-        if j == 4:
-          suma4+=tabla[i][j]
-          porcentaje=(suma4/13)*100
-        if j == 5:
-          suma5+=tabla[i][j]
-          porcentaje=(suma5/13)*100
-      redondeado=round(porcentaje,2)
-      print("La especialidades de",especialidades[j],"tiene un",redondeado,"% citas agendadas")
-      porcentajesE[j]=redondeado
-    mayor=max(porcentajesE)
-    pos=porcentajesE.index(mayor)
-    esp=especialidades[pos]
-    print(mayor)
-    print(pos)
-    print(esp)
+        if j == c:
+          suma+=tabla[i][j]
+          porcen=(suma/13)*100
+          redondea=round(porcen,2)
+    print(redondea)
+    
+def estadisticashora():
+  suma=0
+  hora = input("De cual hora desea ver las estadisticas: ")
+  for a in range(0,14):
+    h=horario[a]
+    if hora.lower() == h.lower():
+      f=a
+  for i in range(1,14,1):
+    for j in range(1,6,1):
+      if i == f:
+        suma+=tabla[i][j]
+        porcentaje=(suma/5)*100
+        redondea=round(porcentaje,2)
+    print(redondea)
+    
+def estadisticasespeciamayor():
+      suma1=0
+      suma2=0
+      suma3=0
+      suma4=0
+      suma5=0
+      porcentajesE=[0]*6
+      for j in range(1,6,1):
+        for i in range(1,14,1):
+          if j == 1:
+            suma1+=tabla[i][j]
+            porcentaje=(suma1/13)*100
+          if j == 2:
+            suma2+=tabla[i][j]
+            porcentaje=(suma2/13)*100
+          if j == 3:
+            suma3+=tabla[i][j]
+            porcentaje=(suma3/13)*100
+          if j == 4:
+            suma4+=tabla[i][j]
+            porcentaje=(suma4/13)*100
+          if j == 5:
+            suma5+=tabla[i][j]
+            porcentaje=(suma5/13)*100
+        redondeado=round(porcentaje,2)
+        print("La especialidades de",especialidades[j],"tiene un",redondeado,"% citas agendadas")
+        porcentajesE[j]=redondeado
+      mayor=max(porcentajesE)
+      pos=porcentajesE.index(mayor)
+      esp=especialidades[pos]
+      print(mayor)
+      print(pos)
+      print(esp)
 
-def vercitas():
-    nombre = input("Nombre Completo: ")
-    for e in range(1,len(nombres),1):
-      es=nombres[e]
-      if nombre.lower() == es.lower():
-        c=e
-    n=nombres[c]
-    a=años[c]
-    i=nidentidad[c]      
+#def vercitas():
+      
 def citaslibresE():
   especialista = input("¿De que especialista desea saber las citas libres? ")
   for e in range(0,6):
-    if especialista == especialidades[e]:
+    if especialista.lower() == especialidades[e]:
       c=e
   libre = 0
   for j in range(1,6,1):
@@ -203,7 +252,7 @@ def citaslibresE():
 def citaslibresH():
   hora = input("¿De que horario desea saber las citas libres? ")
   for a in range(0,14):
-    if hora == horario[a]:
+    if hora.lower() == horario[a]:
       f=a
   libre = 0
   for j in range(1,6,1):
@@ -212,9 +261,11 @@ def citaslibresH():
         if tabla[i][j] == 0:
           libre+=1
   print("En el horario de",hora,"se encuentran",libre,"cita/s libre/s")
+  
+#def datos():
 
 op=0
-while op != 10:
+while op != 11:
   op = int(input("Digite una opcion "))
   if op == 1:
     agendar()
@@ -232,3 +283,5 @@ while op != 10:
     citaslibresE()
   if op == 8:
     citaslibresH()
+  if op == 9:
+    estadisticasespeciamayor()
