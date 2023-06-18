@@ -234,7 +234,22 @@ def estadisticasespeciamayor():
       print(pos)
       print(esp)
 
-#def vercitas():
+def buscarCita():
+  citas = 0
+  citaslista = ""
+  codigo= input("Digite su codigo de usuario: ")
+  while len(codigo) != 4:
+    print("El codigo ingresado no es valido")
+    codigo= input("Ingrese un codigo valido: ")
+  for i in range(1,14,1):
+    for j in range(1,6,1):
+      if tabla[i][j] == codigo + ", R":
+        citas= citas + 1
+        citaslista = citaslista + tabla[0][j] + tabla[i][0] + ";"
+  print("Usted tiene: "+citas+" citas agendadas")
+  ver= input("Desea ver cuales son las citas: ")
+  if ver.upper() == "SI":
+    print(citaslista)
       
 def citaslibresE():
   especialista = input("¿De que especialista desea saber las citas libres? ")
