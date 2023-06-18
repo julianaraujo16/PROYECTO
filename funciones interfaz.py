@@ -238,9 +238,6 @@ def buscarCita():
   citas = 0
   citaslista = ""
   codigo= input("Digite su codigo de usuario: ")
-  while len(codigo) != 4:
-    print("El codigo ingresado no es valido")
-    codigo= input("Ingrese un codigo valido: ")
   for i in range(1,14,1):
     for j in range(1,6,1):
       if tabla[i][j] == codigo + ", R":
