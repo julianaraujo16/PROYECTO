@@ -14,9 +14,9 @@ def AgendarCitas():
     genero = IntVar()
     genero.set(0)
     especialidad = StringVar()
-    especialidad.set("Seleccione")
+    especialidad.set("Seleccionar")
     horarios = StringVar()
-    horarios.set("Seleccione")
+    horarios.set("Seleccionar")
 
     def agendar():
         nombre = Enombre.get()
@@ -91,13 +91,13 @@ def ReasignarCitas():
     ventanaReasignarCitas.title("Reasignar Citas")
     paneldatos = Frame(ventanaReasignarCitas)
     vespecialidad = StringVar()
-    vespecialidad.set("Seleccione")
+    vespecialidad.set("Seleccionar")
     vhorarios = StringVar()
-    vhorarios.set("Seleccione")
+    vhorarios.set("Seleccionar")
     nespecialidad = StringVar()
-    nespecialidad.set("Seleccione")
+    nespecialidad.set("Seleccionar")
     nhorarios = StringVar()
-    nhorarios.set("Seleccione")
+    nhorarios.set("Seleccionar")
 
     def reagendar():
         identidad = Eidentidad.get()
@@ -247,9 +247,9 @@ def VerCitaslibres():
     panelespecialista=Frame(ventanaVerCitasl)
     panelhorario=Frame(ventanaVerCitasl)
     especialidad = StringVar()
-    especialidad.set("Seleccione")
+    especialidad.set("Seleccionar")
     horarios = StringVar()
-    horarios.set("Seleccione")
+    horarios.set("Seleccionar")
 
     def citaslibresE():
         especialista=especialidad.get()
@@ -319,9 +319,9 @@ def Estadisticas():
     panelresultadosmator1=Frame(ventanaEstadisticas)
     panelresultadosmator2=Frame(ventanaEstadisticas)
     especialidad = StringVar()
-    especialidad.set("Seleccione")
+    especialidad.set("Seleccionar")
     horarios = StringVar()
-    horarios.set("Seleccione")
+    horarios.set("Seleccionar")
 
     def estadisticasespecialista():
         especialista = especialidad.get()
@@ -533,9 +533,6 @@ def Estadisticas():
 root = Tk()
 root.title("Ventana principal")
 root.geometry("600x500")
-#imagen = PhotoImage(file="doctor-brazos-cruzados-sobre-fondo-blanco.png")
-#ibimagen(root,image=imagen).place(x=100,y=200)
-#y_ima = PhotoImage(file='doctor-brazos-cruzados-sobre-fondo-blanco.png')
 
 titulo = ttk.Label(root,text="Hospital Universidad del Valle", font=('Courier', 18, 'bold'))
 
